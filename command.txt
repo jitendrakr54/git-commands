@@ -1,0 +1,174 @@
+==========================Git Command======================================= 
+Configure username and useremail:
+	git config --global user.name
+
+	git config --global user.email
+
+To genrate SSH Key
+	1. Open terminal in vfsdk (Home Folder) & give following command
+		ssh-keygen -t rsa -C useremail(jitendrakr54@gmail.com) //using your email  
+			PRESS ENTER
+				PRESS ENTER
+		
+	2. Copy SSH key (using below command)
+		 cat .ssh/id_rsa.pub 
+	
+	3.  paste in Stash account (open stash anf follow as below)
+			account -> Manage -> SSH key -> Pastet here -> save
+
+
+	1. ssh-keygen -t rsa -b 4096 -c "jitendrakr54@gmail.com"
+	2. eval $(ssh-agent -s)  -> Run ssh agent
+	3. ssh-add ~/.ssh/id_rsa -> Add your ssh private key to ssh-agent
+	4. tail ~/.ssh/isd_rsa.pub
+	5. paste in Stash account (open stash and follow as below)
+		account -> Manage -> SSH key -> Paste here -> save
+
+
+To initialize a repo:
+	git init
+
+To clone a repo:
+	git clone "repo link"
+
+To create new branch locally:
+	git checkout -b newbranchname
+
+To delete branch from stash :
+	git branch -D branch name (to delete a branch)
+
+To check branch name:
+	git branch
+
+To check changes in any branch:
+	git status
+
+To add changes in staging area:
+	git add filename -> add files one by one
+	git add --a or -A or . -> add all changes or untraked files to staging area
+
+To unstage changes:
+	git restore --staged <file_name>...
+	git restore <file_name>            -> match with the latest commit
+
+To diff:
+	git diff filename
+	git diff           -> diff between working area and staging area
+	git diff --staged  -> diff between current staging area abd last commit
+
+To commit changes:
+	git commit -m "message"
+	git comit --amend
+	git commit --amend --author="Vivek Shah <viveks6@verifone.com>" --no-edit -> commit with other username
+
+	git commit -a -m  -> commit without adding changes to staging area, it adds only tracked files not untracked files.
+						 git add not required since it adds changes in staging area 
+
+To check commit history:
+	git log    							-> Shows commits with description
+	git log -p 							-> Shows commits with diff
+	git log -p -3       				-> Shows 3 latest commits with diff
+	git log --stat     					-> Shows commits with short summary
+	git log --pretty=oneline			-> Shows commits in oneline with a description
+	git log --pretty=short				-> Shows commits in short description
+	git log --pretty=full				-> Shows commits in more added description
+	git log --since=2.days      		-> Shows last two days commits
+	git log --since=2.weeks     		-> Shows last two weeks commits
+	git log --since=2.months    		-> Shows last two months commits
+	git log --since=2.years     		-> Shows last two years commits
+	git log --pretty=format:"%h -- %an" -> Shows commit history as per format. In this case it shows (comithash -- author name)
+
+To push commit to remote:
+	git push
+
+To discard all changes made in branch:
+	git reset --hard
+	git checkout filename   	-> discard changes in that file
+	git checkout -- filename	-> discard changes in that file
+	git checkout -f 			-> discard changes in all files
+	git clean -f				-> remove new files
+
+To clean everything including untracked files
+	git clean -xfd
+
+To rebase
+	git checkout develop
+	git fetch
+	git pull
+	git checkout ur branch
+	git rebase -i develop
+	If there are any conflicts, resolve them:
+		git add resolved filenames
+		git rebase --continue (save & quit)
+		git commit --amend
+	git push -f
+	
+To Stash local changes:
+	git stash
+	git stash --include-untracked or git stash save -u (for untracked)
+
+Git Squash -
+-------------- 
+	git reset --soft HEAD~2
+	git commit -m ""
+	git push -f
+
+Creating patch file:
+	git diff tag1..tag2 > mypatch.patch
+	You can then apply the resulting patch with:
+	git apply mypatch.patch
+
+To ignore files to be comitted:
+	touch .gitignore      -> Create a file with same name
+	Add all files in .gitignore which are not required to commit
+
+	Let's say there is a file which is being tracked by git and now we want to add in .gitignore 
+	then even after adding that file in .gitgore, if we made any changes and do git status, git will 
+	show that file is changed, means git is tracking that file. To resolve this issue
+
+	git rm --cached filename -> this will inform git that don't track this file and will not delete from locally
+
+To remove any files:
+	git rm filename     -> it remove and stage file as well
+
+To rename any files:
+	git mv old_file_name new_file_name   -> it rename and stage file as well
+
+Creating Alias:
+	git config --global alias.st status -> alias of "git status"
+	git config --global alias.ci commit -> alias of "git commit"
+
+	git config --global alias.unstage 'restore --staged --'  -> to alias a command which has multiple param
+	Now we can run "git unstage file_name"
+
+	git config --global alias.last 'log -p -1'
+
+Deleting git repository:
+	git rm -rf .git 
+
+
+Branch management:
+	git branch
+	git branch -b <branch_name>
+	git branch -v					-> It shws commit hash and message which was done in that branch
+	git branch --merged				-> Shows merged branch
+	git branch --no-merged			-> Shows not merged branch
+	git branch -d <branch_name>		-> delete branch name, shows error if branch is not merged
+	git branch -D <branch_name>     -> delete unmerged branch name
+
+Author:   The one who has created a particular file
+Commitor: The one who has made changes in a particular file
+=====================================================================================
+To setup Local simulator
+1. copy fdpsim contents in Filezilla remote side.
+2. telnet to terminal.
+3. mkdir usr1 in home directory
+4. ls
+5. ftpget -u jit -p girmiti01 192.168.4.102 carpc carpc and dukpt.exe dukpt.exe and fdpsim fdpsim (to get files from remote to terminal)
+6. chmod 777 fdpsim
+7. ./fdpsim (execute)
+
+
+I/P:NNEWS ----> O/P:N
+
+I/P:NWSSEWSNWSSNNEEWS -->O/P:SSW
