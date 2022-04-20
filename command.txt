@@ -1,28 +1,33 @@
 ==========================Git Command======================================= 
-Configure username and useremail:
-	git config --global user.name
-
-	git config --global user.email
-
-To genrate SSH Key
-	1. Open terminal in vfsdk (Home Folder) & give following command
-		ssh-keygen -t rsa -C useremail(jitendrakr54@gmail.com) //using your email  
-			PRESS ENTER
+. Initial setup
+	. Genrate SSH Key
+		1. Open terminal in vfsdk (Home Folder) & give following command
+			ssh-keygen -t rsa -C useremail(jitendrakr54@gmail.com) //using your email  
 				PRESS ENTER
+					PRESS ENTER
+			
+		2. Copy SSH key (using below command)
+			cat .ssh/id_rsa.pub 
 		
-	2. Copy SSH key (using below command)
-		 cat .ssh/id_rsa.pub 
-	
-	3.  paste in Stash account (open stash anf follow as below)
+		3.  paste in Stash account (open stash anf follow as below)
 			account -> Manage -> SSH key -> Pastet here -> save
 
 
-	1. ssh-keygen -t rsa -b 4096 -c "jitendrakr54@gmail.com"
-	2. eval $(ssh-agent -s)  -> Run ssh agent
-	3. ssh-add ~/.ssh/id_rsa -> Add your ssh private key to ssh-agent
-	4. tail ~/.ssh/isd_rsa.pub
-	5. paste in Stash account (open stash and follow as below)
-		account -> Manage -> SSH key -> Paste here -> save
+		1. ssh-keygen -t rsa -b 4096 -c "jitendrakr54@gmail.com"
+		2. eval $(ssh-agent -s)  -> Run ssh agent
+		3. ssh-add ~/.ssh/id_rsa -> Add your ssh private key to ssh-agent
+		4. tail ~/.ssh/isd_rsa.pub
+		5. paste in Stash account (open stash and follow as below)
+			account -> Manage -> SSH key -> Paste here -> save
+
+	. Configure username and useremail:
+		git config --global user.name
+
+		git config --global user.email
+
+	. Change default editor if required
+		git config --global core.editor vim
+
 
 
 To initialize a repo:
